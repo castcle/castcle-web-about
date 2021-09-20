@@ -22,16 +22,27 @@ All works and source files published in this repository are published under [GNU
 
 - **Install dependencies** by executing:
 
+  - **Grunt**
+  ```
+    > npm install -g grunt-cli
+  ```
+
+  - **SASS**
+  ```
+    > npm install -g sass
+  ```
+
   - **Browser Sync**
   ```
     > npm install -g browser-sync
   ```
-  _**Note:** `sudo` root privileges may be required on some os platforms._
 
   - **Node Modules**
   ```
     > npm install
   ```
+
+  _**Note:** `sudo` root privileges may be required on some os platforms._
 
 #### Running on Localhost
 
