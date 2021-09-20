@@ -26,7 +26,7 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    clean: ['dist'],
+    clean: ['dist', 'build'],
     watch: {
       html: {
         files: ['src/**/*.html'],
@@ -44,9 +44,23 @@ module.exports = function(grunt) {
             expand: true,
             cwd: 'src',
             src: ['**/*.html'],
-            dest: 'dist/'
+            dest: 'build/'
           },
         ]
+      }
+    },
+    htmlmin: {
+      dist: { // Target
+        options: { // Target options
+          removeComments: true,
+          collapseWhitespace: true
+        },
+        files: [{
+          expand: true,
+          cwd: 'src',
+          src: ['**/*.html'],
+          dest: 'dist/'
+        }]
       }
     }
   });
@@ -55,9 +69,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
   // Default task(s).
   // Copy src files to dist for the first time, then, still watching for file changes.
-  grunt.registerTask('default', ['copy', 'watch']);
+  grunt.registerTask('serv', ['copy', 'watch']);
+  grunt.registerTask('dist', ['htmlmin']);
+  grunt.registerTask('default', ['serv']);
 
 };
