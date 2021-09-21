@@ -20,20 +20,80 @@
  * Thailand 10160, or visit www.castcle.com if you need additional information
  * or have any questions.
  */
+// Put your custom styles here!
+@use 'sass:math';
+// Import `Kanit` from Google Cloud Fonts
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap');
 
- // Put your custom styles here!
+a {
+  text-decoration: none;
+}
+
+body {
+  margin-top: $topbar-height;
+
+  @include media-breakpoint-down(md) {
+    margin-top: $topbar-height-md-scale * $topbar-height;
+  }
+}
+
 .topbar {
   height: $topbar-height;
-  background-color: red;
+  transition: height $topbar-scale-duration;
+
+  @include media-breakpoint-down(md) {
+    height: $topbar-height-md-scale * $topbar-height;
+  }
+
+  .scale {
+    transition: transform $topbar-scale-duration;
+  }
 
   .logo {
-    display: block;
+    display: inline-block;
     background-color: $white;
-    width: 0.85 * $topbar-height;
-    height: 0.75 * $topbar-height;
-    -webkit-mask-size: cover;
-    -webkit-mask-image: url(https://castcle-public.s3.amazonaws.com/assets/castcle-logo-black.svg);
-    mask-size: cover;
-    mask-image: url(https://castcle-public.s3.amazonaws.com/assets/castcle-logo-black.svg);
+    width: $logo-size;
+    height: math.div($logo-size, $logo-aspect-ratio);
+    -webkit-mask-size: $logo-size math.div($logo-size, $logo-aspect-ratio);
+    -webkit-mask-image: url("https://s3.castcle.com/assets/castcle-logo-full-black.svg");
+    mask-size: $logo-size math.div($logo-size, $logo-aspect-ratio);
+    mask-image: url("https://s3.castcle.com/assets/castcle-logo-full-black.svg");
+  }
+
+  @include media-breakpoint-down(sm) {
+    // Show minimized logo
+    .logo {
+      width: $logo-min-size;
+      height: math.div($logo-min-size, $logo-min-aspect-ratio);
+      -webkit-mask-size: $logo-min-size math.div($logo-min-size, $logo-min-aspect-ratio);
+      -webkit-mask-image: url("https://s3.castcle.com/assets/castcle-logo-black.svg");
+      mask-size: $logo-min-size math.div($logo-min-size, $logo-min-aspect-ratio);
+      mask-image: url("https://s3.castcle.com/assets/castcle-logo-black.svg");
+    }
+  }
+}
+
+#get-app-btn {
+  display: inline-block;
+  font-size: 1.2 * $font-size-base;
+
+  .full {
+    display: inline;
+  }
+
+  .min {
+    display: none;
+  }
+
+  @include media-breakpoint-down(sm) {
+    font-size: 1.1 * $font-size-base;
+
+    .full {
+      display: none;
+    }
+
+    .min {
+      display: inline;
+    }
   }
 }

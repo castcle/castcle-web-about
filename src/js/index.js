@@ -20,35 +20,23 @@
  * Thailand 10160, or visit www.castcle.com if you need additional information
  * or have any questions.
  */
-// Put bootstrap and global vars here!
-@use 'sass:math';
+$(document).ready(function() {
+  // CONSTANTS
+  var TOP_BAR_MIN_SCALE = 0.9;
+  var TOP_BAR_HEIGHT = $('.topbar').height();
 
-// === BOOTSTRAP VARS ===
-// >> Colors
-$primary: #2ac9ff;
-$secondary: #121e27; // $success: ;
-// $info: ;
-// $warning: ;
-// $danger: ;
-// $light: ;
-// $dark: ;
-// >> Fonts
-$font-family-base: Kanit, sans-serif;
-$font-weight-lighter: 100 !default;
-$font-weight-light: 200 !default;
-$font-weight-normal: 300 !default;
-$font-weight-bold: 400 !default;
-$font-weight-bolder: 500 !default;
-// We font weight `light` as default
-$font-weight-base: $font-weight-normal !default;
-// We font weight `normal` (regular) as display
-$display-font-weight: $font-weight-bold !default;
+  $(window).scroll(function(ev) {
+    var scrollTop = $(window).scrollTop();
+    var scale = parseFloat(TOP_BAR_HEIGHT - scrollTop) / TOP_BAR_HEIGHT;
 
-// === GLOBAL VARS ===
-$topbar-height: 120px;
-$topbar-height-md-scale: 0.75;
-$topbar-scale-duration: 0.05s;
-$logo-aspect-ratio: math.div(327.51, 62.11); // width / height
-$logo-size: 240px; // width
-$logo-min-aspect-ratio: math.div(86.0, 76.0); // width / height
-$logo-min-size: 40px; // width
+    if (scale >= TOP_BAR_MIN_SCALE && scale <= 1.0) {
+      // Only scale top bar (up or down) only if the body scroll
+      // top is currently within the range of min scale.
+      // Scale top bar's height
+      $('.topbar').height(TOP_BAR_HEIGHT - 2 * scrollTop);
+      // Scale top bar's children
+      $('.topbar .scale-left').css('transform', 'scale(' + scale + ') translate(-' + 50 * (1 - scale) + '%');
+      $('.topbar .scale-right').css('transform', 'scale(' + scale + ') translate(' + 50 * (1 - scale) + '%');
+    }
+  });
+});

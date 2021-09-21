@@ -29,7 +29,8 @@ module.exports = function(grunt) {
     clean: ['dist', 'build'],
     watch: {
       html: {
-        files: ['src/**/*.html'],
+        // Watch html & js files in `src` folder.
+        files: ['src/**/*.html', 'src/**/*.js'],
         tasks: ['copy'],
         options: {
           spawn: false,
@@ -39,11 +40,11 @@ module.exports = function(grunt) {
     copy: {
       main: {
         files: [
-          // Includes html files within path and its sub-directories.
+          // Includes html & js files within path and its sub-directories.
           {
             expand: true,
             cwd: 'src',
-            src: ['**/*.html'],
+            src: ['**/*.html', '**/*.js'],
             dest: 'build/'
           },
         ]
@@ -62,6 +63,16 @@ module.exports = function(grunt) {
           dest: 'dist/'
         }]
       }
+    },
+    uglify: {
+      dist: {
+        files: [{
+          expand: true,
+          cwd: 'src/js',
+          src: '**/*.js',
+          dest: 'dist/js'
+        }]
+      }
     }
   });
 
@@ -70,11 +81,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Default task(s).
   // Copy src files to dist for the first time, then, still watching for file changes.
   grunt.registerTask('serv', ['copy', 'watch']);
-  grunt.registerTask('dist', ['htmlmin']);
+  grunt.registerTask('dist', ['htmlmin', 'uglify']);
   grunt.registerTask('default', ['serv']);
 
 };
