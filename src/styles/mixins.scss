@@ -20,39 +20,14 @@
  * Thailand 10160, or visit www.castcle.com if you need additional information
  * or have any questions.
  */
-// Put bootstrap and global vars here!
-@use 'sass:math';
-
-// === BOOTSTRAP VARS ===
-// >> Colors
-$primary: #02D2FF;
-$secondary: #162834; // $success: ;
-// $info: ;
-// $warning: ;
-// $danger: ;
-// $light: ;
-// $dark: ;
-// >> Fonts
-$font-family-base: Kanit, sans-serif;
-$font-weight-lighter: 100 !default;
-$font-weight-light: 200 !default;
-$font-weight-normal: 300 !default;
-$font-weight-bold: 400 !default;
-$font-weight-bolder: 500 !default;
-// We font weight `light` as default
-$font-weight-base: $font-weight-normal !default;
-// We font weight `normal` (regular) as display
-$display-font-weight: $font-weight-bold !default;
-
-// === GLOBAL VARS ===
-// Top Bar
-$topbar-height: 120px;
-$topbar-height-md-scale: 0.75;
-$topbar-scale-duration: 0.05s;
-// Logo
-$logo-aspect-ratio: math.div(327.51, 62.11); // width / height
-$logo-size: 240px; // width
-$logo-min-aspect-ratio: math.div(86.0, 76.0); // width / height
-$logo-min-size: 40px; // width
-// Patterns
-$pattern-opacity: 0.12;
+@mixin svg($url, $color: $white, $width: auto, $height: auto) {
+  background-color: $color;
+  // Set svg size
+  width: $width;
+  height: $height;
+  // Svg masking
+  -webkit-mask-size: $width $height;
+  mask-size: $width $height;
+  -webkit-mask-image: url($url);
+  mask-image: url($url);
+}

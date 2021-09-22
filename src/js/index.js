@@ -22,7 +22,7 @@
  */
 $(document).ready(function() {
   // CONSTANTS
-  var TOP_BAR_MIN_SCALE = 0.9;
+  var TOP_BAR_MIN_SCALE = 0.8;
   var TOP_BAR_HEIGHT = $('.topbar').height();
 
   $(window).scroll(function(ev) {
