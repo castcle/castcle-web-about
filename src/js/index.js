@@ -25,18 +25,31 @@ $(document).ready(function() {
   var TOP_BAR_MIN_SCALE = 0.8;
   var TOP_BAR_HEIGHT = $('.topbar').height();
 
-  $(window).scroll(function(ev) {
+  function scrollHandler(ev) {
     var scrollTop = $(window).scrollTop();
     var scale = parseFloat(TOP_BAR_HEIGHT - scrollTop) / TOP_BAR_HEIGHT;
 
+    if (scale < TOP_BAR_MIN_SCALE) {
+      scale = TOP_BAR_MIN_SCALE;
+      // Add top bar shadow
+      $('.topbar').addClass('shadow border-bottom border-dark');
+    } else {
+      // Remove top bar shadow
+      $('.topbar').removeClass('shadow border-bottom border-dark');
+    }
     if (scale >= TOP_BAR_MIN_SCALE && scale <= 1.0) {
       // Only scale top bar (up or down) only if the body scroll
       // top is currently within the range of min scale.
       // Scale top bar's height
-      $('.topbar').height(TOP_BAR_HEIGHT - 2 * scrollTop);
+      $('.topbar').height(0.8 * scale * TOP_BAR_HEIGHT);
       // Scale top bar's children
       $('.topbar .scale-left').css('transform', 'scale(' + scale + ') translate(-' + 50 * (1 - scale) + '%');
       $('.topbar .scale-right').css('transform', 'scale(' + scale + ') translate(' + 50 * (1 - scale) + '%');
     }
-  });
+  }
+
+  $(window).scroll(scrollHandler);
+
+  // Call scrollHandler() once on document ready.
+  scrollHandler();
 });

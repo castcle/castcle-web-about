@@ -22,10 +22,9 @@
  */
 // Put your custom styles here!
 @use 'sass:math'; // Import `Kanit` from Google Cloud Fonts
-@import "mixins";
-// Font import
-@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap');
-// CSS Variables and Generic Class definitions
+@import "mixins"; // Font import
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap'); // CSS Variables and Generic Class definitions
+
 :root {
   --logo-size: $logo-size;
 }
@@ -55,7 +54,42 @@ body {
   @include svg("https://s3.castcle.com/assets/pattern-dot-7x3.svg", rgba($white, $pattern-opacity), var(--svg-size), calc(var(--svg-size) / 2));
 }
 
+.pattern-dot-3x1 {
+  --svg-size: 35px;
+  @include svg("https://s3.castcle.com/assets/pattern-dot-3x1.svg", rgba($white, $pattern-opacity), var(--svg-size), calc(var(--svg-size) / 5));
+}
+
+.pattern-dot-outline {
+  --svg-size: 35px;
+  @include svg("https://s3.castcle.com/assets/pattern-dot-outline.svg", rgba($white, $pattern-opacity), var(--svg-size), var(--svg-size));
+}
+
+.pattern-dot {
+  --svg-size: 35px;
+  @include svg("https://s3.castcle.com/assets/pattern-dot.svg", rgba($white, $pattern-opacity), var(--svg-size), var(--svg-size));
+}
+
+.pattern-wave {
+  --svg-size: 100px;
+  @include svg("https://s3.castcle.com/assets/pattern-wave.svg", rgba($white, $pattern-opacity), var(--svg-size), calc(var(--svg-size) / 3.33));
+}
+
+.pattern-dot-3x1-outline {
+  --svg-size: 50px;
+  @include svg("https://s3.castcle.com/assets/pattern-dot-3x1-outline.svg", rgba($white, $pattern-opacity), var(--svg-size), calc(var(--svg-size) / 5));
+}
+
+.pattern-dot-7x3-diag {
+  --svg-size: 115px;
+  @include svg("https://s3.castcle.com/assets/pattern-dot-7x3-diag.svg", rgba($white, $pattern-opacity), var(--svg-size), calc(var(--svg-size) / 2.5));
+}
+
+.pattern-square-outline-rotate {
+  --svg-size: 115px;
+  @include svg("https://s3.castcle.com/assets/pattern-square-outline-rotate.svg", rgba($white, $pattern-opacity), var(--svg-size), var(--svg-size));
+}
 // UI-specific Class definitions
+
 .topbar {
   height: $topbar-height;
   transition: height $topbar-scale-duration;
@@ -111,19 +145,199 @@ body {
   height: 680px;
   overflow: hidden;
 
+  > .content {
+    margin-top: 90px;
+
+    @include media-breakpoint-down(xl) {
+      // Clear `margin-top` on tablet and mobile.
+      margin-top: 0;
+    }
+
+    .text {
+      width: 100%;
+      padding-left: 100px;
+      padding-right: 35px;
+
+      h1 {
+        font-size: 1.5 * $h1-font-size;
+        margin-bottom: 35px;
+      }
+    }
+
+    @include media-breakpoint-down(xl) {
+      // Tablet
+      .text {
+        padding: 0;
+        text-align: center;
+        // Add `margin-bottom` between text and youtube on tablet
+        // and mobile.
+        margin-bottom: 70px;
+        // Move `text` up a little bit on tablet and mobile.
+        margin-top: -15px;
+        // Force set position to `inherit` (instead of `absolute`)
+        // to gain back normal browser box sizing.
+        position: inherit !important;
+
+        h1 {
+          font-size: 1.1 * $h1-font-size;
+          // Reduce margin between `h1` and `p` on tablet and mobile.
+          margin-bottom: 25px;
+        }
+
+        p {
+          font-size: 0.9 * $h4-font-size !important;
+        }
+      }
+    }
+    @include media-breakpoint-down(lg) {
+      // Mobile
+      .text {
+        h1 {
+          font-size: $h1-font-size;
+        }
+
+        p {
+          font-size: 0.8 * $h4-font-size !important;
+        }
+      }
+    }
+
+    .youtube {
+      width: 100%;
+      min-height: $youtube-min-height;
+      box-shadow: $youtube-box-shadow;
+
+      @include border-radius(15px);
+    }
+  }
+
   > .bg {
     position: absolute;
     width: 1440px;
     height: 100%;
+    z-index: -1;
 
     > .wrapper {
       position: relative;
       width: 100%;
       height: 100%;
-    }
 
-    .pattern-dot-7x3 {
-      
+      [class*=pattern-] {
+        position: absolute;
+      }
+
+      .p1.pattern-dot-7x3 {
+        left: 80px;
+        top: 0;
+      }
+
+      .p2.pattern-dot-3x1 {
+        left: 65px;
+        top: 205px;
+      }
+
+      .p3.pattern-dot-outline {
+        --svg-size: 95px;
+        left: 15px;
+        top: 273px;
+        background-color: rgba($white, 0.16);
+      }
+
+      .p4.pattern-dot {
+        --svg-size: 130px;
+        left: 245px;
+        top: 455px;
+        background-color: rgba($primary, 0.16);
+      }
+
+      .p5.pattern-dot-3x1 {
+        --svg-size: 23px;
+        left: 482px;
+        top: 455px;
+      }
+
+      .p6.pattern-wave {
+        --svg-size: 75px;
+        left: 572px;
+        top: 95px;
+        background-color: rgba($white, 0.09);
+      }
+
+      .p7.pattern-dot-3x1 {
+        --svg-size: 25px;
+        left: 965px;
+        top: 0;
+      }
+
+      .p8.pattern-dot-3x1-outline {
+        --svg-size: 56px;
+        left: 638px;
+        top: 580px;
+        background-color: rgba($white, 0.1);
+      }
+
+      .p9.pattern-dot-7x3-diag {
+        --svg-size: 78px;
+        left: 845px;
+        top: 600px;
+        background-color: rgba($white, 0.1);
+      }
+
+      .p10.pattern-dot-3x1 {
+        --svg-size: 25px;
+        left: 890px;
+        top: 490px;
+        background-color: rgba($white, 0.08);
+      }
+
+      .p11.pattern-square-outline-rotate {
+        --svg-size: 125px;
+        left: 990px;
+        top: 512px;
+        background-color: rgba($white, 0.1);
+      }
+
+      .p12.pattern-dot-3x1-outline {
+        --svg-size: 148px;
+        left: 1195px;
+        top: 548px;
+        background-color: rgba($primary, 0.09);
+      }
+
+      .p13.pattern-dot-3x1-outline {
+        --svg-size: 95px;
+        left: 1295px;
+        top: 75px;
+        background-color: rgba($white, 0.07);
+      }
+
+      .p14.pattern-dot-3x1-outline {
+        --svg-size: 95px;
+        left: 1280px;
+        top: 103px;
+        background-color: rgba($white, 0.07);
+      }
+
+      .p15.pattern-dot {
+        --svg-size: 100px;
+        left: 1000px;
+        top: 100px;
+        background-color: rgba($primary, 0.09);
+      }
+
+      .p16.pattern-dot-3x1-outline {
+        --svg-size: 80px;
+        left: 800px;
+        top: 330px;
+        background-color: rgba($white, 0.07);
+      }
+
+      .p17.pattern-dot-3x1-outline {
+        --svg-size: 80px;
+        left: 813px;
+        top: 353px;
+        background-color: rgba($white, 0.07);
+      }
     }
   }
 }
