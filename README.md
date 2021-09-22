@@ -51,3 +51,17 @@ All works and source files published in this repository are published under [GNU
 ```
 
 Castcle's project about page will be shown on your default browser with `browser-sync` supported. All changes made in `<INSTALL_DIR>/src` folder will be auto-refreshed on web browser.
+
+#### Building Project
+
+Compiled only
+
+```
+> npm run build
+```
+
+Minified verson (for distribution)
+
+```
+> npm run dist
+```
