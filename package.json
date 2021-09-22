@@ -3,7 +3,17 @@
   "version": "0.0.1",
   "description": "A static html web page demonstrating current Castcle project status and milestones.",
   "scripts": {
-    "start": "browser-sync start --config bs-config.js"
+    "start": "npm run clean && (npm run grunt & npm run sass & npm run serv)",
+    "build": "npm run clean && npm run grunt-build && npm run sass-build",
+    "dist": "npm run clean && npm run grunt-dist && npm run sass-dist",
+    "clean": "grunt clean",
+    "grunt": "grunt serv",
+    "grunt-build": "grunt copy",
+    "grunt-dist": "grunt dist",
+    "sass": "sass --watch src/styles/index.scss build/styles/index.css",
+    "sass-build": "sass src/styles/index.scss build/styles/index.css",
+    "sass-dist": "sass src/styles/index.scss dist/styles/index.css --style compressed --no-source-map",
+    "serv": "browser-sync start --config bs-config.js"
   },
   "repository": {
     "type": "git",
@@ -14,5 +24,14 @@
   "bugs": {
     "url": "https://github.com/castcle/castcle-web-about/issues"
   },
-  "homepage": "https://github.com/castcle/castcle-web-about#readme"
+  "homepage": "https://github.com/castcle/castcle-web-about#readme",
+  "devDependencies": {
+    "bootstrap": "^5.1.1",
+    "grunt": "^1.4.1",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-htmlmin": "^3.1.0",
+    "grunt-contrib-uglify": "^5.0.1",
+    "grunt-contrib-watch": "^1.1.0"
+  }
 }
