@@ -26,11 +26,12 @@
 // === BOOTSTRAP VARS ===
 // >> Colors
 $primary: #02D2FF;
-$secondary: #162834; // $success: ;
+$secondary: #162834;
+// $success: ;
 // $info: ;
 // $warning: ;
 // $danger: ;
-// $light: ;
+$light: #E9ECEF;
 // $dark: ;
 // >> Fonts
 $font-family-base: Kanit, sans-serif;
@@ -56,6 +57,18 @@ $logo-min-aspect-ratio: math.div(86.0, 76.0); // width / height
 $logo-min-size: 40px; // width
 // Patterns
 $pattern-opacity: 0.12;
+// Ruler
+$rule-color: black;
+$rule-size: 1px;
+$rule-width: 92%;
 // Intro section
 $youtube-min-height: 400px;
 $youtube-box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+$youtube-border-radius: 15px;
+// App Store button
+$app-store-btn-width: 280px;
+$app-store-btn-box-shadow: 0 30px 30px rgba(0, 0, 0, 0.4);
+$app-store-btn-box-shadow-hover: 0 35px 35px rgba(0, 0, 0, 0.5);
+$app-store-btn-transition-duration: 0.5s;
+$app-store-btn-transition-function: cubic-bezier(0.22, 1, 0.36, 1);
+$app-store-btn-transform-hover: translateY(-3px) scale(1.025);

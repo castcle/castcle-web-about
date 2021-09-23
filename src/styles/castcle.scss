@@ -25,8 +25,17 @@
 @import "mixins"; // Font import
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap'); // CSS Variables and Generic Class definitions
 
+//////////////////////////////
+// Generic & Common classes //
+//////////////////////////////
+
 :root {
-  --logo-size: $logo-size;
+  // Logo
+  --logo-size: #{$logo-size};
+  // Ruler
+  --rule-color: #{$rule-color};
+  --rule-size: #{$rule-size};
+  --rule-width: #{$rule-width};
 }
 
 a {
@@ -88,7 +97,35 @@ body {
   --svg-size: 115px;
   @include svg("https://s3.castcle.com/assets/pattern-square-outline-rotate.svg", rgba($white, $pattern-opacity), var(--svg-size), var(--svg-size));
 }
-// UI-specific Class definitions
+
+.section-rule {
+  background-color: var(--rule-color);
+  height: var(--rule-size);
+  width: var(--rule-width);
+  margin: auto;
+}
+
+.apple-store-btn, .play-store-btn {
+  display: block;
+  box-shadow: $app-store-btn-box-shadow;
+  width: $app-store-btn-width;
+  transition: box-shadow, transform;
+  transition-duration: $app-store-btn-transition-duration;
+  transition-timing-function: $app-store-btn-transition-function;
+
+  img {
+    width: 100%;
+  }
+
+  &:hover {
+    transform: $app-store-btn-transform-hover;
+    box-shadow: $app-store-btn-box-shadow-hover;
+  }
+}
+
+/////////////////////////
+// UI-specific Classes //
+/////////////////////////
 
 .topbar {
   height: $topbar-height;
@@ -142,19 +179,24 @@ body {
 
 #intro {
   position: relative;
-  height: 680px;
+  height: 960px;
+  // Need `overflow: hidden` for background crop.
   overflow: hidden;
 
   > .content {
+    // The `content`'s margrin from top bar.
     margin-top: 90px;
 
     @include media-breakpoint-down(xl) {
-      // Clear `margin-top` on tablet and mobile.
+      // Clear `margin-top` to make `content` being closer
+      // to the top bar on tablet and mobile.
       margin-top: 0;
     }
 
     .text {
       width: 100%;
+      // Set padding to make `text` being placed close to `yotube`.
+      // (on the right hand side)
       padding-left: 100px;
       padding-right: 35px;
 
@@ -179,12 +221,16 @@ body {
         position: inherit !important;
 
         h1 {
+          // Reduce `font-size` down from 1.5 to 1.1 times of
+          // `$h1-font-size` on tablet.
           font-size: 1.1 * $h1-font-size;
           // Reduce margin between `h1` and `p` on tablet and mobile.
           margin-bottom: 25px;
         }
 
         p {
+          // Reduce `font-size` down from 1.0 to 0.9 time of
+          // `$h4-font-size` on tablet.
           font-size: 0.9 * $h4-font-size !important;
         }
       }
@@ -193,10 +239,13 @@ body {
       // Mobile
       .text {
         h1 {
+          // Reduce `font-size` down to `$h1-font-size` on mobile.
           font-size: $h1-font-size;
         }
 
         p {
+          // Reduce `font-size` down from 1.0 to 0.8 time of
+          // `$h4-font-size` on mobile.
           font-size: 0.8 * $h4-font-size !important;
         }
       }
@@ -207,7 +256,65 @@ body {
       min-height: $youtube-min-height;
       box-shadow: $youtube-box-shadow;
 
-      @include border-radius(15px);
+      @include border-radius($youtube-border-radius);
+    }
+  }
+
+  > .app-store {
+    height: 460px;
+
+    > .wrapper {
+      width: 100%;
+    }
+
+    .header {
+      margin-bottom: 60px;
+    }
+
+    h5.header {
+      // Override header's `margin-bottom` on mobile.
+      margin-bottom: 30px;
+    }
+
+    .apple-store-btn {
+      margin-right: 50px;
+    }
+    .play-store-btn {
+      margin-left: 50px;
+    }
+
+    @include media-breakpoint-down(lg) {
+      .apple-store-btn {
+        margin-right: 20px;
+      }
+      .play-store-btn {
+        margin-left: 20px;
+      }
+    }
+    @include media-breakpoint-down(md) {
+      .apple-store-btn, .play-store-btn {
+        width: 0.75 * $app-store-btn-width;
+        margin: auto;
+        box-shadow: none;
+        border: 1px solid rgba($gray-600, 0.2);
+        border-radius: 5px;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(xl) {
+    > .app-store {
+      // Resize app store bar down on tablet for
+      // responsive compensation.
+      height: 385px;
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    > .app-store {
+      // Resize app store bar down on mobile for
+      // responsive compensation.
+      height: 290px;
     }
   }
 
@@ -338,6 +445,14 @@ body {
         top: 353px;
         background-color: rgba($white, 0.07);
       }
+
+      .p18.pattern-dot-outline {
+        --svg-size: 140px;
+        left: 575px;
+        top: 780px;
+        background-color: rgba($white, 0.04);
+      }
     }
   }
+
 }
