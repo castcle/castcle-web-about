@@ -43,6 +43,7 @@ a {
 
 body {
   margin-top: $topbar-height;
+  min-width: $body-min-width;
   @include media-breakpoint-down(md) {
     margin-top: $topbar-height-md-scale * $topbar-height;
   }
@@ -478,12 +479,71 @@ body {
 
   > .content {
     // The `content`'s margrin from INTRO section.
-    margin-top: 90px;
+    width: 100%;
+    height: 440px;
+
+    h1 {
+      width: 720px;
+    }
+
+    @include media-breakpoint-down(lg) {
+      h1 {
+        width: 650px;
+      }
+    }
+
+    @include media-breakpoint-down(md) {
+      h1 {
+        width: 500px;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      .header {
+        width: 100%;
+        padding: 0 10px 0 10px;
+      }
+      h1 {
+        width: 100%;
+      }
+    }
+
+  }
+
+  @include media-breakpoint-down(xl) {
+    > .content {
+      // Re-positioning text on tablet.
+      // Move it up!
+      height: 330px;
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    > .content {
+      // Re-positioning text on tablet.
+      // Move it up!
+      height: 320px;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    > .content {
+      // Re-positioning text on tablet.
+      // Move it up!
+      height: 270px;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    > .content {
+      // Re-positioning text on mobile.
+      // Move it up!
+      height: 160px;
+    }
   }
 
   > .fg {
     width: 100%;
-    top: 70px;
     z-index: -1;
 
     > .wrapper {
@@ -497,12 +557,34 @@ body {
       margin-left: 10px;
     }
 
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(xl) {
       .avatar {
-        width: 200px;
-        margin: -50px 0 0 -60px;
+        width: 220px;
+        margin: 0 0 0 -30px;
       }
     }
+
+    @include media-breakpoint-down(lg) {
+      .avatar {
+        width: 220px;
+        margin: -30px 0 0 -30px;
+      }
+    }
+
+    @include media-breakpoint-down(md) {
+      .avatar {
+        width: 200px;
+        margin: -30px 0 0 -50px;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      .avatar {
+        width: 120px;
+        margin: -10px 0 0 -35px;
+      }
+    }
+
   }
 
   > .bg {
@@ -553,5 +635,12 @@ body {
         background-color: rgba($white, 0.08);
       }
     }
+  }
+}
+
+#see-ads {
+  .icon {
+    --svg-size: 50px;
+    @include svg("https://s3.castcle.com/assets/icon-ads.svg", $white, var(--svg-size), calc(var(--svg-size) / 1.09));
   }
 }
