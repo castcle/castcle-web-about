@@ -24,6 +24,7 @@
 @use 'sass:math'; // Import `Kanit` from Google Cloud Fonts
 @import "mixins"; // Font import
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap'); // CSS Variables and Generic Class definitions
+
 //////////////////////////////
 // Generic & Common classes //
 //////////////////////////////
@@ -140,6 +141,7 @@ body {
     box-shadow: $app-store-btn-box-shadow-hover;
   }
 }
+
 /////////////////////////
 // UI-specific Classes //
 /////////////////////////
@@ -193,6 +195,7 @@ body {
     }
   }
 }
+
 ///////////////////
 // INTRO SECTION //
 ///////////////////
@@ -468,12 +471,13 @@ body {
     }
   }
 }
+
 ///////////////////
 // INFO SECTION //
 ///////////////////
 
 #info {
-  height: 3600px;
+  height: 2670px;
   // Need `overflow: hidden` for background crop.
   overflow: hidden;
 
@@ -488,11 +492,17 @@ body {
 
     .mobile-float-wrapper {
       width: 100%;
-      height: 1000px;
+      height: 970px;
     }
 
     h1 {
       width: 720px;
+    }
+
+    @include media-breakpoint-down(xl) {
+      .mobile-float-wrapper {
+        height: 870px;
+      }
     }
 
     @include media-breakpoint-down(lg) {
@@ -528,6 +538,8 @@ body {
   }
 
   @include media-breakpoint-down(xl) {
+    height: 2630px;
+
     > .content {
       .header-wrapper {
         // Re-positioning text on tablet.
@@ -538,6 +550,8 @@ body {
   }
 
   @include media-breakpoint-down(lg) {
+    height: 3560px;
+
     > .content {
       .header-wrapper {
         // Re-positioning text on tablet.
@@ -548,6 +562,8 @@ body {
   }
 
   @include media-breakpoint-down(md) {
+    height: 3710px;
+
     > .content {
       .header-wrapper {
         // Re-positioning text on tablet.
@@ -558,6 +574,8 @@ body {
   }
 
   @include media-breakpoint-down(sm) {
+    height: 2630px;
+
     > .content {
       .header-wrapper {
         // Re-positioning text on mobile.
@@ -569,6 +587,7 @@ body {
 
   > .fg {
     width: 100%;
+    height: 100%;
     z-index: -1;
 
     > .wrapper {
@@ -598,7 +617,36 @@ body {
       background-color: rgba($black, 0.45);
       width: 100%;
       top: 1240px;
-      height: 1000px;
+      height: 1060px;
+
+      .wrapper {
+        width: 100% !important;
+        height: 100% !important;
+
+        [class*=pattern-] {
+          position: absolute;
+        }
+      }
+
+      .p1.pattern-dot-7x3 {
+        --svg-size: 90px;
+        left: 225px;
+        bottom: 100px;
+        background-color: $white;
+      }
+
+      .p2.pattern-dot-3x1 {
+        --svg-size: 23px;
+        right: 175px;
+        bottom: 180px;
+        background-color: $white;
+      }
+    }
+
+    .airdrop-bg {
+      background-color: $black;
+      width: 100%;
+      height: 400px;
     }
 
     @include media-breakpoint-down(xl) {
@@ -609,6 +657,14 @@ body {
 
       .roadmap-bg {
         top: 1170px;
+
+        .p1.pattern-dot-7x3 {
+          left: 95px;
+        }
+
+        .p2.pattern-dot-3x1 {
+          right: 95px;
+        }
       }
     }
 
@@ -628,6 +684,15 @@ body {
 
       .roadmap-bg {
         top: 1730px;
+        height: 1430px;
+
+        .p1.pattern-dot-7x3 {
+          display: none;
+        }
+
+        .p2.pattern-dot-3x1 {
+          display: none;
+        }
       }
     }
 
@@ -645,6 +710,7 @@ body {
 
       .roadmap-bg {
         top: 1860px;
+        height: 1450px;
       }
     }
 
@@ -664,6 +730,7 @@ body {
 
       .roadmap-bg {
         top: 1080px;
+        height: 1150px;
       }
     }
 
@@ -791,4 +858,136 @@ body {
       padding: 0 !important;
     }
   }
+
+  .roadmap {
+    .header {
+      margin-bottom: 90px;
+
+      .icon {
+        width: 170px;
+      }
+
+      h1 {
+        width: inherit;
+        font-size: $font-size-base * $roadmap-header-font-size-scale;
+        padding-left: 15px;
+      }
+    }
+
+    [class*=col-] {
+      border-color: $primary !important;
+    }
+
+    h2 {
+      margin-top: 20px;
+      margin-bottom: 50px;
+      font-size: $h1-font-size;
+
+      > small {
+        font-size: $h1-font-size * 0.6;
+      }
+    }
+
+    .list {
+      margin-bottom: 20px;
+      width: 100%;
+
+      ul {
+        list-style: none; /* Remove default bullets */
+        font-size: $h1-font-size * 0.7;
+
+        li::before {
+          content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+          color: $primary; /* Change the color */
+          font-weight: bold; /* If you want it to be bold */
+          display: inline-block; /* Needed to add space between the bullet and the text */
+          width: 1em; /* Also needed for space (tweak if needed) */
+          margin-left: -1em; /* Also needed for space (tweak if needed) */
+        }
+      }
+    }
+  }
+
+  @include media-breakpoint-down(xl) {
+    .roadmap {
+      margin-top: 130px;
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    .roadmap {
+      margin-top: 150px;
+
+      .header {
+        margin-bottom: 30px;
+      }
+
+      [class*=col-] {
+        border: 0 !important;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    .roadmap {
+      margin-top: 200px;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    .roadmap {
+      margin-top: 90px;
+
+      .header {
+        transform: scale(0.6);
+        margin-bottom: 15px;
+      }
+
+      .body {
+        transform: scale(0.75);
+        margin-top: -170px;
+      }
+
+      .list {
+        margin-bottom: 0px;
+      }
+    }
+  }
+
+  .airdrop {
+    margin-top: 140px;
+
+    > img {
+      width: 470px;
+    }
+  }
+
+  @include media-breakpoint-down(xl) {
+    .airdrop {
+      margin-top: 70px;
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    .airdrop {
+      margin-top: 30px;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    .airdrop {
+      margin-top: 30px;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    .airdrop {
+      margin-top: -70px;
+
+      > img {
+        width: 280px;
+      }
+    }
+  }
+
 }
