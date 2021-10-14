@@ -52,4 +52,11 @@ $(document).ready(function() {
 
   // Call scrollHandler() once on document ready.
   scrollHandler();
+
+  // Before MVP
+  $('.apple-store-btn, .play-store-btn, #get-app-btn').click(() => {
+    alert('Castcle App will be available SOON! :)');
+
+    return false;
+  });
 });
