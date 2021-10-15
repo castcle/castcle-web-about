@@ -29,9 +29,9 @@ module.exports = function(grunt) {
     clean: ['dist', 'build'],
     watch: {
       html: {
-        // Watch html & js files in `src` folder.
-        files: ['src/**/*.html', 'src/**/*.js'],
-        tasks: ['copy'],
+        // Watch html, js & pdf files in `src` folder.
+        files: ['src/**/*.html', 'src/**/*.js', 'src/**/*.pdf'],
+        tasks: ['copy:main'],
         options: {
           spawn: false,
         },
@@ -46,6 +46,18 @@ module.exports = function(grunt) {
             cwd: 'src',
             src: ['**/*.html', '**/*.js', '**/*.pdf'],
             dest: 'build/'
+          },
+        ]
+      },
+      dist: {
+        files: [
+          // Only include pdf files since html & js files will be handled
+          // by `htmlmin` and `uglify`.
+          {
+            expand: true,
+            cwd: 'src',
+            src: ['**/*.pdf'],
+            dest: 'dist/'
           },
         ]
       }
@@ -85,8 +97,9 @@ module.exports = function(grunt) {
 
   // Default task(s).
   // Copy src files to dist for the first time, then, still watching for file changes.
-  grunt.registerTask('serv', ['copy', 'watch']);
-  grunt.registerTask('dist', ['htmlmin', 'uglify']);
+  grunt.registerTask('serv', ['copy:main', 'watch']);
+  grunt.registerTask('build', ['copy:main']);
+  grunt.registerTask('dist', ['htmlmin', 'uglify', 'copy:dist']);
   grunt.registerTask('default', ['serv']);
 
 };

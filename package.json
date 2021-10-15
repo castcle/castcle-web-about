@@ -8,7 +8,7 @@
     "dist": "npm run clean && npm run grunt-dist && npm run sass-dist",
     "clean": "grunt clean",
     "grunt": "grunt serv",
-    "grunt-build": "grunt copy",
+    "grunt-build": "grunt build",
     "grunt-dist": "grunt dist",
     "sass": "sass --watch src/styles/index.scss build/styles/index.css",
     "sass-build": "sass src/styles/index.scss build/styles/index.css",
