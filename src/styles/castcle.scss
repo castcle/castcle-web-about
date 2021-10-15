@@ -129,6 +129,21 @@ body {
   @include svg("https://s3.castcle.com/assets/icon-medium.svg", rgba($white, 1.0), calc(var(--svg-size) * 1.74), var(--svg-size));
 }
 
+.icon-telegram {
+  --svg-size: 24px;
+  @include svg("https://s3.castcle.com/assets/icon-telegram.svg", rgba($white, 1.0), calc(var(--svg-size) * 1.26), var(--svg-size));
+}
+
+.icon-github {
+  --svg-size: 30px;
+  @include svg("https://s3.castcle.com/assets/icon-github.svg", rgba($white, 1.0), var(--svg-size), var(--svg-size));
+}
+
+.icon-discord {
+  --svg-size: 24px;
+  @include svg("https://s3.castcle.com/assets/icon-discord.svg", rgba($white, 1.0), calc(var(--svg-size) * 1.3), var(--svg-size));
+}
+
 .section-rule {
   background-color: var(--rule-color);
   height: var(--rule-size);
@@ -198,6 +213,26 @@ body {
   .min {
     display: none;
   }
+  @include media-breakpoint-down(md) {
+    font-size: 1.1 * $font-size-base;
+
+    .full {
+      display: none;
+    }
+
+    .min {
+      display: inline;
+    }
+  }
+}
+
+#whitepaper-btn {
+  font-size: 1.2 * $font-size-base;
+
+  :hover {
+    color: $primary;
+  }
+
   @include media-breakpoint-down(sm) {
     font-size: 1.1 * $font-size-base;
 
@@ -291,6 +326,10 @@ body {
       min-height: $youtube-min-height;
       box-shadow: $youtube-box-shadow;
       @include border-radius($youtube-border-radius);
+    }
+
+    .learn-more {
+      font-size: $font-size-base * 1.1;
     }
   }
 
