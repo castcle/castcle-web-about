@@ -54,9 +54,9 @@ $(document).ready(function() {
   scrollHandler();
 
   // Before MVP
-  $('.apple-store-btn, .play-store-btn, #get-app-btn').click(() => {
-    alert('Castcle App will be available SOON! :)');
+  // $('.apple-store-btn, .play-store-btn, #get-app-btn').click(() => {
+  //   alert('Castcle App will be available SOON! :)');
 
-    return false;
-  });
+  //   return false;
+  // });
 });
