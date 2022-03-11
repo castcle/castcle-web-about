@@ -3,7 +3,7 @@ frontend:
   phases:
     preBuild:
       commands:
-        - echo Install dependencies...!
+        - echo Install dependencies...
         - npm install -g grunt-cli
         - npm install -g sass
         - npm install -g browser-sync
