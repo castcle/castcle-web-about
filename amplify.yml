@@ -10,7 +10,7 @@ frontend:
         - npm install 
     build:
       commands:
-      - echo Building application...
+      - echo Building castcle...
       - npm run dist
   artifacts:
     baseDirectory: dist
